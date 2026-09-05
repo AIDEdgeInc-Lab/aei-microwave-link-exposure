@@ -1,5 +1,10 @@
 # AEI Microwave Link Exposure
 
+[![PyPI version](https://img.shields.io/pypi/v/aei-microwave-link-exposure.svg)](https://pypi.org/project/aei-microwave-link-exposure/)
+[![Python versions](https://img.shields.io/pypi/pyversions/aei-microwave-link-exposure.svg)](https://pypi.org/project/aei-microwave-link-exposure/)
+[![License](https://img.shields.io/pypi/l/aei-microwave-link-exposure.svg)](https://github.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/blob/main/LICENSE)
+[![CI](https://github.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/actions/workflows/ci.yml/badge.svg)](https://github.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/actions/workflows/ci.yml)
+
 **`aei-microwave-link-exposure`** — an AID Edge Inc. open-source engineering
 library that calculates how much a terrestrial microwave point-to-point
 link is exposed to weather, using published ITU-R engineering methods.
@@ -8,6 +13,16 @@ built entirely on top of the library.
 
 Part of the AID Edge `aei-*` engineering library family, alongside
 [`aei-geo-features`](https://github.com/AIDEdgeInc-Lab/aei-geo-features).
+
+## Status & roadmap
+
+v0.1.0 is the first installable public release of this library -- not a
+pre-release, not an incomplete package. Semver's 0.x range is the standard
+way to signal initial development, not a hedge about readiness. Scope
+evolves through normal versioned releases, the same way
+[`aei-geo-features`](https://github.com/AIDEdgeInc-Lab/aei-geo-features)
+has grown, as real-world usage and engineering feedback inform future
+development.
 
 ---
 
