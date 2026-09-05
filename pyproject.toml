@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aei-microwave-link-exposure"
-version = "0.1.0"
+version = "0.1.1"
 description = "Given weather observations and a terrestrial microwave point-to-point link, calculate the link's weather-related exposure using transparent ITU-R engineering methods."
 readme = "README.md"
 requires-python = ">=3.9"

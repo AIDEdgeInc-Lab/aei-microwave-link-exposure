@@ -28,26 +28,26 @@ development.
 
 ## Show me
 
-![My Sites workflow: a 4-site CSV uploaded, validated, analyzed, and shown as a results table with nearest station, distance, station/model/radar precipitation, and representativeness per site, plus a Download CSV button](docs/images/my-sites-workflow.jpg)
+![My Sites workflow: a 4-site CSV uploaded, validated, analyzed, and shown as a results table with nearest station, distance, station/model/radar precipitation, and representativeness per site, plus a Download CSV button](https://raw.githubusercontent.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/main/docs/images/my-sites-workflow.jpg)
 
 Upload your own site list, get back an Evidence Ledger you can export --
 the primary workflow, and it works anywhere the underlying public
 weather/ECCC data has coverage. See [Upload My Sites](#upload-my-sites)
 below.
 
-![Link inspector panel showing the Observed / Calculated / Inferred breakdown for one demo link: live rain rate, ITU-R P.838-3/P.530 formula and inputs, predicted attenuation, fade margin, and exposure ratio](docs/images/site-inspector.png)
+![Link inspector panel showing the Observed / Calculated / Inferred breakdown for one demo link: live rain rate, ITU-R P.838-3/P.530 formula and inputs, predicted attenuation, fade margin, and exposure ratio](https://raw.githubusercontent.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/main/docs/images/site-inspector.png)
 
 Every result is traceable: what was observed, what was calculated from it
 and how, and what that implies — never blended together.
 
-![Map showing a selected real GeoHub tower (dashed ring), the nearest ECCC observing station (pin marker), and the 14.6 km gray dashed line between them -- deliberately styled so it cannot be mistaken for a microwave link](docs/images/weather-representativeness.jpg)
+![Map showing a selected real GeoHub tower (dashed ring), the nearest ECCC observing station (pin marker), and the 14.6 km gray dashed line between them -- deliberately styled so it cannot be mistaken for a microwave link](https://raw.githubusercontent.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/main/docs/images/weather-representativeness.jpg)
 
 Select any site and the map shows exactly where its nearest weather
 evidence actually comes from, and how far away it is -- the same distance
 also drives the inspector panel below. See
 [How the engineering works](#how-the-engineering-works) below.
 
-![Microwave Weather Explorer: map showing real Ontario GeoHub telecom towers (purple) and a demo microwave network (green links) across the GTA/York Region, with live weather and provenance-labeled summary metrics](docs/images/explorer-overview.jpg)
+![Microwave Weather Explorer: map showing real Ontario GeoHub telecom towers (purple) and a demo microwave network (green links) across the GTA/York Region, with live weather and provenance-labeled summary metrics](https://raw.githubusercontent.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/main/docs/images/explorer-overview.jpg)
 
 A separate, secondary area of the Explorer bundles one real public
 infrastructure dataset and a small illustrative demo microwave network
@@ -115,7 +115,7 @@ exactly that question, transparently, and stops there.
 ## Upload example
 
 The fastest way to see the workflow is with the working example file at
-[`examples/my_sites_example.csv`](examples/my_sites_example.csv) -- the
+[`examples/my_sites_example.csv`](https://raw.githubusercontent.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/main/examples/my_sites_example.csv) -- the
 Explorer also offers it directly as a "Download example CSV" button next
 to the upload control.
 
