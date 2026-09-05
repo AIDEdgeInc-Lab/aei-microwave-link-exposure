@@ -3,6 +3,15 @@
 All notable changes to this project are recorded here. This project is
 published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
 
+## [0.1.3] - 2026-09-04
+
+### Changed
+
+- **License changed from MIT to Apache-2.0**, for consistency with
+  other AID Edge aei-* engineering libraries (aei-geo-features,
+  aei-3gpp-kpi-validator). Versions 0.1.0-0.1.2 remain under MIT as
+  originally published; this change applies to 0.1.3 and later only.
+
 ## [0.1.2] - 2026-09-04
 
 ### Changed

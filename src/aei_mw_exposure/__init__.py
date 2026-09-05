@@ -56,7 +56,7 @@ from .representativeness import (
 )
 from .weather import SOURCE_SYNTHETIC, SOURCE_TEST_FIXTURE, WeatherObservation, WeatherProvider, peak_rain
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 __all__ = [
     "__version__",
