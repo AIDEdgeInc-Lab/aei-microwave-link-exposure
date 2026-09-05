@@ -25,7 +25,7 @@ dependencies = []
 open-meteo = ["requests>=2.31"]
 infrastructure = ["requests>=2.31"]
 explorer = ["streamlit>=1.30", "streamlit-folium>=0.20", "folium>=0.15", "requests>=2.31"]
-dev = ["pytest>=7.0"]
+dev = ["pytest>=7.0", "requests>=2.31"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
