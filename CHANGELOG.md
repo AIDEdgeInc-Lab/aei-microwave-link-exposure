@@ -3,6 +3,14 @@
 All notable changes to this project are recorded here. This project is
 published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
 
+## [0.1.2] - 2026-09-04
+
+### Changed
+
+- Default Explorer map view recentered on Lake Ontario/Toronto waterfront
+  for clearer geographic context; refreshed screenshot to reflect current
+  UI (previous screenshot predated the My Sites redesign).
+
 ## [0.1.1] - 2026-09-04
 
 ### Fixed

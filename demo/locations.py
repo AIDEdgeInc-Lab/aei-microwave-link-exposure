@@ -29,7 +29,7 @@ class Location:
 
 
 LOCATIONS: list[Location] = [
-    Location("GTA / York Region (wide view)", 43.80, -79.45, 0.55),
+    Location("GTA / York Region (wide view)", 43.64, -79.38, 0.45),
     Location("Toronto", 43.6532, -79.3832, 0.13),
     Location("Newmarket", 44.0592, -79.4613, 0.10),
     Location("Markham", 43.8561, -79.3370, 0.10),
