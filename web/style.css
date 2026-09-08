@@ -141,3 +141,50 @@ html, body {
     max-width: none;
   }
 }
+
+/* Nearby Weather Evidence popup (Leaflet popup content) */
+.leaflet-popup-content {
+  font-family: inherit;
+  font-size: 13px;
+  min-width: 280px;
+}
+
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.evidence-table th,
+.evidence-table td {
+  text-align: left;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.evidence-table th {
+  color: var(--ink-soft);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.evidence-flag {
+  margin: 6px 0;
+  font-weight: 600;
+  color: #1a7a3c;
+}
+
+.evidence-flag-disagree {
+  color: #a4691f;
+}
+
+.evidence-note {
+  margin: 4px 0;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}

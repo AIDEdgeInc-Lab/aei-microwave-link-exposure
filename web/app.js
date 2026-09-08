@@ -78,6 +78,7 @@ function plotSites(sites, color) {
       fillColor: color,
       fillOpacity: 0.6,
     }).bindTooltip(s.name);
+    attachWeatherEvidence(m, s);
     m.addTo(sitesLayer);
     markers.push(m);
   });
