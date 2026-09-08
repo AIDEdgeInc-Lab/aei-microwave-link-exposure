@@ -90,6 +90,49 @@ html, body {
   background: rgba(20, 24, 28, 0.05);
 }
 
+.upload-help {
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.upload-help code {
+  font-size: 11.5px;
+  background: rgba(20, 24, 28, 0.06);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+.upload-help a {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--accent-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.upload-help a:hover {
+  text-decoration: underline;
+}
+
+.status {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13.5px;
+}
+
+.status .status-line {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.status .status-error {
+  color: #a4291f;
+  font-weight: 600;
+}
+
 @media (max-width: 520px) {
   .hero {
     left: 12px;

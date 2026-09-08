@@ -17,6 +17,15 @@
       <button id="btn-upload" class="btn btn-primary">Upload My Sites</button>
       <button id="btn-example" class="btn btn-secondary">Explore Example Sites</button>
     </div>
+    <input type="file" id="file-input" accept=".csv" hidden />
+
+    <p class="upload-help">
+      Upload a CSV containing your infrastructure sites. Required columns:
+      <code>site_id, site_name, latitude, longitude</code>.
+      <a id="sample-link" href="sample_sites.csv" download>Download sample CSV</a>
+    </p>
+
+    <div id="status" class="status" hidden></div>
   </header>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

@@ -1,0 +1,730 @@
+[
+{
+"site_id": "geohub-1794",
+"name": "Communication Tower (OGF 1200839828)",
+"latitude": 43.87271871361157,
+"longitude": -79.59464247091579,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1795",
+"name": "Communication Tower (OGF 1200839829)",
+"latitude": 43.967533931613985,
+"longitude": -79.56274016925435,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1803",
+"name": "Communication Tower (OGF 1200839837)",
+"latitude": 44.065987252475026,
+"longitude": -79.48266875253718,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1796",
+"name": "Communication Tower (OGF 1200839830)",
+"latitude": 43.9217583276971,
+"longitude": -79.47647383756954,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1804",
+"name": "Communication Tower (OGF 1200839838)",
+"latitude": 44.068190254597866,
+"longitude": -79.44562564087964,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1805",
+"name": "Communication Tower (OGF 1200839840)",
+"latitude": 44.068410755393884,
+"longitude": -79.4294865357328,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1799",
+"name": "Communication Tower (OGF 1200839833)",
+"latitude": 43.95736133523352,
+"longitude": -79.44790723163035,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1797",
+"name": "Communication Tower (OGF 1200839831)",
+"latitude": 43.95643413507163,
+"longitude": -79.4479188315509,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1798",
+"name": "Communication Tower (OGF 1200839832)",
+"latitude": 43.956883135153824,
+"longitude": -79.44783243156353,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1800",
+"name": "Communication Tower (OGF 1200839834)",
+"latitude": 43.95722863526455,
+"longitude": -79.44675153124892,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1801",
+"name": "Communication Tower (OGF 1200839835)",
+"latitude": 43.956796535188815,
+"longitude": -79.44676273121374,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1802",
+"name": "Communication Tower (OGF 1200839836)",
+"latitude": 43.95637403511306,
+"longitude": -79.44681113119127,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1807",
+"name": "Communication Tower (OGF 1200839842)",
+"latitude": 44.02461155151857,
+"longitude": -79.34984910629156,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1808",
+"name": "Communication Tower (OGF 1200839843)",
+"latitude": 44.049033258239064,
+"longitude": -79.29685509151196,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1812",
+"name": "Communication Tower (OGF 1200839847)",
+"latitude": 44.01553655494864,
+"longitude": -79.24252197110424,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1813",
+"name": "Communication Tower (OGF 1200839848)",
+"latitude": 44.015524454955816,
+"longitude": -79.24232277103933,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1810",
+"name": "Communication Tower (OGF 1200839845)",
+"latitude": 43.7977042163037,
+"longitude": -79.25600945606323,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1811",
+"name": "Communication Tower (OGF 1200839846)",
+"latitude": 43.79818591902142,
+"longitude": -79.19911163791373,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1815",
+"name": "Communication Tower (OGF 1200839850)",
+"latitude": 44.031846462706206,
+"longitude": -79.13672333865247,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1814",
+"name": "Communication Tower (OGF 1200839849)",
+"latitude": 44.013258559461754,
+"longitude": -79.13690683705443,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1820",
+"name": "Communication Tower (OGF 1200839855)",
+"latitude": 43.92015264437421,
+"longitude": -79.11211452084179,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1821",
+"name": "Communication Tower (OGF 1200839856)",
+"latitude": 44.03990336643545,
+"longitude": -79.08656022328371,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1822",
+"name": "Communication Tower (OGF 1200839857)",
+"latitude": 44.03972276640546,
+"longitude": -79.0865286232575,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1818",
+"name": "Communication Tower (OGF 1200839853)",
+"latitude": 43.880138238589765,
+"longitude": -79.08596930893152,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1819",
+"name": "Communication Tower (OGF 1200839854)",
+"latitude": 43.88555963978185,
+"longitude": -79.08067930771558,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1823",
+"name": "Communication Tower (OGF 1200839858)",
+"latitude": 43.81315932844511,
+"longitude": -79.05168539206038,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1824",
+"name": "Communication Tower (OGF 1200839859)",
+"latitude": 43.88642754250202,
+"longitude": -79.02497818994833,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1826",
+"name": "Communication Tower (OGF 1200839861)",
+"latitude": 43.8546625406124,
+"longitude": -78.94515996158088,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1722",
+"name": "Communication Tower (OGF 1200839756)",
+"latitude": 43.45733003330197,
+"longitude": -79.75547248521805,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1731",
+"name": "Communication Tower (OGF 1200839765)",
+"latitude": 43.45733003330197,
+"longitude": -79.75547248521805,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1723",
+"name": "Communication Tower (OGF 1200839757)",
+"latitude": 43.458045933408535,
+"longitude": -79.75589038541374,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1732",
+"name": "Communication Tower (OGF 1200839766)",
+"latitude": 43.458045933408535,
+"longitude": -79.75589038541374,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1725",
+"name": "Communication Tower (OGF 1200839759)",
+"latitude": 43.45842733346164,
+"longitude": -79.756191585543,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1734",
+"name": "Communication Tower (OGF 1200839768)",
+"latitude": 43.45842733346164,
+"longitude": -79.756191585543,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1733",
+"name": "Communication Tower (OGF 1200839767)",
+"latitude": 43.458372633493546,
+"longitude": -79.75530278525586,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1724",
+"name": "Communication Tower (OGF 1200839758)",
+"latitude": 43.458372633493546,
+"longitude": -79.75530278525586,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1735",
+"name": "Communication Tower (OGF 1200839769)",
+"latitude": 43.45871973349497,
+"longitude": -79.7565811856925,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1726",
+"name": "Communication Tower (OGF 1200839760)",
+"latitude": 43.45871973349497,
+"longitude": -79.7565811856925,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1737",
+"name": "Communication Tower (OGF 1200839771)",
+"latitude": 43.45878073355306,
+"longitude": -79.75556628537545,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1728",
+"name": "Communication Tower (OGF 1200839762)",
+"latitude": 43.45878073355306,
+"longitude": -79.75556628537545,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1729",
+"name": "Communication Tower (OGF 1200839763)",
+"latitude": 43.459439933545156,
+"longitude": -79.75822278627729,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1738",
+"name": "Communication Tower (OGF 1200839772)",
+"latitude": 43.459439933545156,
+"longitude": -79.75822278627729,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1736",
+"name": "Communication Tower (OGF 1200839770)",
+"latitude": 43.459055733580456,
+"longitude": -79.75601808554316,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1727",
+"name": "Communication Tower (OGF 1200839761)",
+"latitude": 43.459055733580456,
+"longitude": -79.75601808554316,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1739",
+"name": "Communication Tower (OGF 1200839773)",
+"latitude": 43.45975073361868,
+"longitude": -79.75782088617697,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1730",
+"name": "Communication Tower (OGF 1200839764)",
+"latitude": 43.45975073361868,
+"longitude": -79.75782088617697,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1740",
+"name": "Communication Tower (OGF 1200839774)",
+"latitude": 43.49314394073796,
+"longitude": -79.73126228067912,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1741",
+"name": "Communication Tower (OGF 1200839775)",
+"latitude": 43.49465484108731,
+"longitude": -79.72947438024403,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1781",
+"name": "Communication Tower (OGF 1200839815)",
+"latitude": 43.486023244693136,
+"longitude": -79.61949414452158,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1782",
+"name": "Communication Tower (OGF 1200839816)",
+"latitude": 43.486352244767,
+"longitude": -79.61915274444192,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1784",
+"name": "Communication Tower (OGF 1200839818)",
+"latitude": 43.486819644783104,
+"longitude": -79.62057664493568,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1783",
+"name": "Communication Tower (OGF 1200839817)",
+"latitude": 43.487111844853864,
+"longitude": -79.62016184482943,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1786",
+"name": "Communication Tower (OGF 1200839820)",
+"latitude": 43.4876162448725,
+"longitude": -79.62167154535376,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1785",
+"name": "Communication Tower (OGF 1200839819)",
+"latitude": 43.48798104495385,
+"longitude": -79.62130454526908,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1792",
+"name": "Communication Tower (OGF 1200839826)",
+"latitude": 43.49710494644619,
+"longitude": -79.62376874685367,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1791",
+"name": "Communication Tower (OGF 1200839825)",
+"latitude": 43.504441547431426,
+"longitude": -79.63035614959311,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1789",
+"name": "Communication Tower (OGF 1200839823)",
+"latitude": 43.505207847492855,
+"longitude": -79.63193455016241,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1790",
+"name": "Communication Tower (OGF 1200839824)",
+"latitude": 43.50541894761952,
+"longitude": -79.63001234956961,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1787",
+"name": "Communication Tower (OGF 1200839821)",
+"latitude": 43.50641034765057,
+"longitude": -79.6330948506371,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1788",
+"name": "Communication Tower (OGF 1200839822)",
+"latitude": 43.50616644768048,
+"longitude": -79.6315293501178,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1742",
+"name": "Communication Tower (OGF 1200839776)",
+"latitude": 43.544901450700394,
+"longitude": -79.71285997939489,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1720",
+"name": "Communication Tower (OGF 1200839754)",
+"latitude": 43.57597475127692,
+"longitude": -79.81706131527561,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-552",
+"name": "Communication Tower (OGF 601439674)",
+"latitude": 43.20735018824895,
+"longitude": -79.77417076931462,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-551",
+"name": "Communication Tower (OGF 601439673)",
+"latitude": 43.20754988823829,
+"longitude": -79.77516396964664,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1762",
+"name": "Communication Tower (OGF 1200839796)",
+"latitude": 43.57334665717047,
+"longitude": -79.6813552718876,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1767",
+"name": "Communication Tower (OGF 1200839801)",
+"latitude": 43.57315615721554,
+"longitude": -79.67967517133627,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1761",
+"name": "Communication Tower (OGF 1200839795)",
+"latitude": 43.57380225719196,
+"longitude": -79.68260857232661,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1756",
+"name": "Communication Tower (OGF 1200839790)",
+"latitude": 43.5742592572085,
+"longitude": -79.68397327280118,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1763",
+"name": "Communication Tower (OGF 1200839797)",
+"latitude": 43.57373105724941,
+"longitude": -79.68111157184404,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1765",
+"name": "Communication Tower (OGF 1200839799)",
+"latitude": 43.57377075727784,
+"longitude": -79.6806524717015,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1760",
+"name": "Communication Tower (OGF 1200839794)",
+"latitude": 43.574214557272306,
+"longitude": -79.68243857230895,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1768",
+"name": "Communication Tower (OGF 1200839802)",
+"latitude": 43.573571157321794,
+"longitude": -79.67896017114546,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1757",
+"name": "Communication Tower (OGF 1200839791)",
+"latitude": 43.57468785729807,
+"longitude": -79.6836666727415,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1764",
+"name": "Communication Tower (OGF 1200839798)",
+"latitude": 43.57420625734086,
+"longitude": -79.68094017183152,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1766",
+"name": "Communication Tower (OGF 1200839800)",
+"latitude": 43.574212457390026,
+"longitude": -79.67991217150505,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1759",
+"name": "Communication Tower (OGF 1200839793)",
+"latitude": 43.574661957362395,
+"longitude": -79.68219347227055,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1758",
+"name": "Communication Tower (OGF 1200839792)",
+"latitude": 43.5750642573715,
+"longitude": -79.68350987272493,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1721",
+"name": "Communication Tower (OGF 1200839755)",
+"latitude": 43.60099005654821,
+"longitude": -79.79824711151646,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1745",
+"name": "Communication Tower (OGF 1200839779)",
+"latitude": 43.57765875986907,
+"longitude": -79.63978315904075,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1747",
+"name": "Communication Tower (OGF 1200839781)",
+"latitude": 43.57872475997192,
+"longitude": -79.64159215971058,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1744",
+"name": "Communication Tower (OGF 1200839778)",
+"latitude": 43.57829726001946,
+"longitude": -79.63896375883634,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1748",
+"name": "Communication Tower (OGF 1200839782)",
+"latitude": 43.57920196002039,
+"longitude": -79.64234935999364,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1746",
+"name": "Communication Tower (OGF 1200839780)",
+"latitude": 43.57875666006426,
+"longitude": -79.63973365912194,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1751",
+"name": "Communication Tower (OGF 1200839785)",
+"latitude": 43.579844460085404,
+"longitude": -79.64337536037692,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1743",
+"name": "Communication Tower (OGF 1200839777)",
+"latitude": 43.57893536017154,
+"longitude": -79.6381071586201,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1749",
+"name": "Communication Tower (OGF 1200839783)",
+"latitude": 43.579840060172465,
+"longitude": -79.64149285977743,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1753",
+"name": "Communication Tower (OGF 1200839787)",
+"latitude": 43.58076276017596,
+"longitude": -79.64489056094024,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1752",
+"name": "Communication Tower (OGF 1200839786)",
+"latitude": 43.5809778602886,
+"longitude": -79.64328796044921,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1750",
+"name": "Communication Tower (OGF 1200839784)",
+"latitude": 43.58050566032765,
+"longitude": -79.64067275957521,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1754",
+"name": "Communication Tower (OGF 1200839788)",
+"latitude": 43.5814280603323,
+"longitude": -79.64404576073011,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1755",
+"name": "Communication Tower (OGF 1200839789)",
+"latitude": 43.582066660482724,
+"longitude": -79.64322636052572,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1769",
+"name": "Communication Tower (OGF 1200839803)",
+"latitude": 43.58741816109112,
+"longitude": -79.65032786325854,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1770",
+"name": "Communication Tower (OGF 1200839804)",
+"latitude": 43.587667061147286,
+"longitude": -79.65006216319597,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1772",
+"name": "Communication Tower (OGF 1200839806)",
+"latitude": 43.65130267265226,
+"longitude": -79.64280916652048,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1771",
+"name": "Communication Tower (OGF 1200839805)",
+"latitude": 43.650602272734524,
+"longitude": -79.63842286506151,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1773",
+"name": "Communication Tower (OGF 1200839807)",
+"latitude": 43.6721283754836,
+"longitude": -79.66030167393987,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1780",
+"name": "Communication Tower (OGF 1200839814)",
+"latitude": 43.68013647683604,
+"longitude": -79.66137657499392,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1779",
+"name": "Communication Tower (OGF 1200839813)",
+"latitude": 43.6803927768644,
+"longitude": -79.66173057512941,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1778",
+"name": "Communication Tower (OGF 1200839812)",
+"latitude": 43.680675976897426,
+"longitude": -79.66208407526719,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1777",
+"name": "Communication Tower (OGF 1200839811)",
+"latitude": 43.68094107692788,
+"longitude": -79.66242557539952,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1776",
+"name": "Communication Tower (OGF 1200839810)",
+"latitude": 43.68122437696091,
+"longitude": -79.66277907553732,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1775",
+"name": "Communication Tower (OGF 1200839809)",
+"latitude": 43.6815169769945,
+"longitude": -79.66315717568372,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1774",
+"name": "Communication Tower (OGF 1200839808)",
+"latitude": 43.681772577025,
+"longitude": -79.66346167580348,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+},
+{
+"site_id": "geohub-1793",
+"name": "Communication Tower (OGF 1200839827)",
+"latitude": 43.69324798292855,
+"longitude": -79.58021515030018,
+"source": "Ontario GeoHub -- Tower dataset (MNRF)"
+}
+]
