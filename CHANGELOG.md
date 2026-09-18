@@ -3,6 +3,18 @@
 All notable changes to this project are recorded here. This project is
 published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
 
+## [0.1.4] - 2026-09-18
+
+### Fixed
+
+- `estimate_rain_attenuation()` reproduces the caller's frequency exactly in
+  its `assumption` string. It was formatted with `{freq_ghz:.0f}`, so a
+  7.25 GHz input read back as "7 GHz". That string is the method disclosure
+  and is quoted verbatim by downstream evidence exports, where it appeared
+  beside the same frequency at full precision -- a record that contradicted
+  itself within one row. Shortest round-trip is used rather than `%g`, which
+  would truncate 18.123456 GHz to 18.1235. `rain_rate_mm_h` is unchanged.
+
 ## [0.1.3] - 2026-09-04
 
 ### Changed
