@@ -178,7 +178,13 @@ def estimate_rain_attenuation(
         predicted_attenuation_db=round(attenuation, 2),
         method="ITU-R P.838-3 specific attenuation x ITU-R P.530 effective path length",
         assumption=(
-            f"gamma_R = k*R^alpha at R={rain_rate_mm_h:.1f} mm/h, {freq_ghz:.0f} GHz, "
+            # freq_ghz is reproduced exactly, not rounded: it is the caller's
+            # own input, and this string is quoted verbatim as the method
+            # disclosure by downstream evidence exports. At :.0f a 7.25 GHz
+            # input read back as "7 GHz", contradicting the same value shown
+            # elsewhere in the same record. !r is shortest round-trip, so it
+            # cannot truncate the way a %g six-significant-figure format can.
+            f"gamma_R = k*R^alpha at R={rain_rate_mm_h:.1f} mm/h, {freq_ghz!r} GHz, "
             f"{polarization} pol (k={k:.6g}, alpha={alpha:.4g}) -> {gamma:.4f} dB/km. "
             f"d_eff = {path_length_km:.1f} km / (1 + {path_length_km:.1f}/d0) = {d_eff:.2f} km "
             f"(rain assumed uniform along the effective path, not the full "
