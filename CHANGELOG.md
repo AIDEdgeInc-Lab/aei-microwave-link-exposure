@@ -14,6 +14,7 @@ published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
   beside the same frequency at full precision -- a record that contradicted
   itself within one row. Shortest round-trip is used rather than `%g`, which
   would truncate 18.123456 GHz to 18.1235. `rain_rate_mm_h` is unchanged.
+- Corrected license metadata to Apache-2.0 (previously inconsistent with README/PyPI listing).
 
 ## [0.1.3] - 2026-09-04
 

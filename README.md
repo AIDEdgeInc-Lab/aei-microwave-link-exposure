@@ -524,6 +524,6 @@ today.
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Real infrastructure data retains its own
+Apache-2.0 — see [LICENSE](LICENSE). Real infrastructure data retains its own
 government licensing (Open Government Licence – Ontario / Canada); see
 [Data sources](#data-sources) above for attribution.
