@@ -32,3 +32,8 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 aei_mw_exposure = ["py.typed"]
+
+[project.urls]
+Homepage = "https://aidedgeinc.com/tools/"
+Source = "https://github.com/AIDEdgeInc-Lab/aei-microwave-link-exposure"
+Issues = "https://github.com/AIDEdgeInc-Lab/aei-microwave-link-exposure/issues"
