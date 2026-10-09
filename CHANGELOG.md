@@ -3,7 +3,7 @@
 All notable changes to this project are recorded here. This project is
 published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
 
-## [0.2.0] - unreleased (prepared locally; not published)
+## [0.2.0] - 2026-10-09
 
 ### Changed -- predicted rain attenuation is different. Please re-run saved analyses.
 
@@ -17,6 +17,13 @@ published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
   (the Recommendation covers 1-1000 GHz). The P.530 effective-path factor, the rain-rate selection and the severity thresholds are unchanged.
 - Verified against Table 5 of the Recommendation at every tabulated frequency 1-100 GHz (`tests/test_p838_table5.py`, generated from the ITU PDF) and against the open-source ITU-Rpy 0.4.0.
 - `_P838_TABLE` is removed (it was private).
+
+## [0.1.5] - 2026-10-08
+
+### Changed
+
+- PyPI project links: Homepage now points to https://aidedgeinc.com/tools/ and a Source link points to this repository (package
+  metadata only; no code, API or dependency change).
 
 ## [0.1.4] - 2026-09-18
 
