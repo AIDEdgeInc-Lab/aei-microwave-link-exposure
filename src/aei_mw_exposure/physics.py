@@ -24,9 +24,10 @@ WHAT THIS IS NOT
   design approximation being reused here for an instantaneous rain rate --
   a simplification, stated once, here, rather than hidden.
 
-Table source: ITU-R P.838-3 regression coefficients, transcribed from the
-published recommendation. Re-verify against the official text before this
-number is used for anything beyond an illustrative estimate.
+Coefficients: the constants of Tables 1-4 of Recommendation ITU-R P.838-3 and its
+equations (2)-(5), evaluated directly (no lookup table, no interpolation). From
+0.2.0 on; releases up to 0.1.5 used a transcribed table that did not match the
+Recommendation for most frequencies (see CHANGELOG).
 """
 
 from __future__ import annotations
@@ -37,75 +38,44 @@ from typing import Literal
 
 Polarization = Literal["H", "V"]
 
-# freq_ghz -> (k_H, alpha_H, k_V, alpha_V)
-_P838_TABLE: dict[float, tuple[float, float, float, float]] = {
-    1.0: (0.0000259, 0.9691, 0.0000308, 0.8592),
-    2.0: (0.0000847, 1.0664, 0.0000998, 0.9490),
-    4.0: (0.0001071, 1.6009, 0.0002461, 1.2476),
-    6.0: (0.0001750, 1.5900, 0.0001425, 1.4745),
-    7.0: (0.0003010, 1.5900, 0.0002277, 1.5037),
-    8.0: (0.0004540, 1.5617, 0.0003380, 1.5213),
-    10.0: (0.0010100, 1.2760, 0.0008870, 1.2640),
-    12.0: (0.0188000, 1.2170, 0.0168000, 1.2000),
-    15.0: (0.0367000, 1.1540, 0.0335000, 1.1280),
-    18.0: (0.0555000, 1.1270, 0.0500000, 1.1100),
-    20.0: (0.0751000, 1.0990, 0.0691000, 1.0650),
-    23.0: (0.1035000, 1.0650, 0.0952000, 1.0330),
-    25.0: (0.1240000, 1.0610, 0.1130000, 1.0300),
-    30.0: (0.1870000, 1.0210, 0.1670000, 1.0000),
-    35.0: (0.2630000, 0.9790, 0.2330000, 0.9630),
-    38.0: (0.3055000, 0.9550, 0.2712000, 0.9410),
-    40.0: (0.3500000, 0.9390, 0.3100000, 0.9290),
-    45.0: (0.4420000, 0.9030, 0.3930000, 0.8970),
-    50.0: (0.5360000, 0.8730, 0.4790000, 0.8680),
-    60.0: (0.7070000, 0.8260, 0.6420000, 0.8240),
-    70.0: (0.8510000, 0.7930, 0.7840000, 0.7930),
-    80.0: (0.9750000, 0.7690, 0.9060000, 0.7690),
-    90.0: (1.0600000, 0.7530, 0.9990000, 0.7540),
-    100.0: (1.1200000, 0.7430, 1.0600000, 0.7440),
+# BEGIN GENERATED P838 CONSTANTS (scripts/gen_p838_constants.py in the Velorona Map repo; do not edit by hand)
+# Recommendation ITU-R P.838-3 (03/2005), English edition, Tables 1-4: https://www.itu.int/dms_pubrec/itu-r/rec/p/R-REC-P.838-3-200503-I!!PDF-E.pdf (retrieved 2026-10-09T01:30:36Z, pdf sha256 3ab7482993e51fc63c5127a72e9e8930614e73652ac614882760817e7c1469cb)
+# name -> (a_j, b_j, c_j, m, c). log10 k (kH, kV) uses 4 terms, alpha (aH, aV) uses 5: Recommendation eq. (2) and (3).
+_P838_CONSTANTS = {
+    "kH": ((-5.3398, -0.35351, -0.23789, -0.94158), (-0.10008, 1.2697, 0.86036, 0.64552), (1.13098, 0.454, 0.15354, 0.16817), -0.18961, 0.71147),
+    "kV": ((-3.80595, -3.44965, -0.39902, 0.50167), (0.56934, -0.22911, 0.73042, 1.07319), (0.81061, 0.51059, 0.11899, 0.27195), -0.16398, 0.63297),
+    "alphaH": ((-0.14318, 0.29591, 0.32177, -5.3761, 16.1721), (1.82442, 0.77564, 0.63773, -0.9623, -3.2998), (-0.55187, 0.19822, 0.13164, 1.47828, 3.4399), 0.67849, -1.95537),
+    "alphaV": ((-0.07771, 0.56727, -0.20238, -48.2991, 48.5833), (2.3384, 0.95545, 1.1452, 0.791669, 0.791459), (-0.76284, 0.54039, 0.26809, 0.116226, 0.116479), -0.053739, 0.83433),
 }
-# NOTE: 18, 23, 38 GHz rows are log-log interpolated from the official
-# tabulated points (12/20/25/35/40 GHz) to cover common microwave backhaul
-# bands not directly tabulated in P.838-3. They are convenience values for
-# this library's demo bands, not a substitute for the published table.
+# END GENERATED P838 CONSTANTS
 
-_FREQS = sorted(_P838_TABLE.keys())
-MIN_FREQ_GHZ = _FREQS[0]
-MAX_FREQ_GHZ = _FREQS[-1]
+# Range this library accepts. The Recommendation itself is defined for 1-1000 GHz; the 1-100 GHz limit is the library's existing, narrower scope and is unchanged.
+MIN_FREQ_GHZ = 1.0
+MAX_FREQ_GHZ = 100.0
+
+
+def _p838_term(name: str, log_f: float) -> float:
+    a, b, c, m, c0 = _P838_CONSTANTS[name]
+    return sum(aj * math.exp(-(((log_f - bj) / cj) ** 2)) for aj, bj, cj in zip(a, b, c)) + m * log_f + c0
 
 
 def rain_coefficients(freq_ghz: float, polarization: Polarization = "V") -> tuple[float, float]:
-    """(k, alpha) for a frequency, log-log interpolated across the table.
+    """(k, alpha) from the Recommendation's equations (2) and (3) -- a continuous function of frequency, no table and no interpolation.
 
-    Raises ``ValueError`` outside the tabulated 1-100 GHz range rather than
-    extrapolating -- extrapolating this regression is not defensible.
+    Terrestrial link: path elevation theta = 0 and polarization tilt tau = 0 (H) or 90 degrees (V), so equations (4) and (5) reduce to
+    k = kH / kV and alpha = alphaH / alphaV (cos^2(theta) = 1, cos(2 tau) = +1 / -1).
+
+    Raises ``ValueError`` outside the supported 1-100 GHz range rather than extrapolating.
     """
     if not (MIN_FREQ_GHZ <= freq_ghz <= MAX_FREQ_GHZ):
         raise ValueError(
             f"freq_ghz={freq_ghz} outside supported range [{MIN_FREQ_GHZ}, {MAX_FREQ_GHZ}] GHz"
         )
-    k_idx, a_idx = (2, 3) if polarization == "V" else (0, 1)
-    ks = [_P838_TABLE[f][k_idx] for f in _FREQS]
-    als = [_P838_TABLE[f][a_idx] for f in _FREQS]
-    log_f = [math.log10(f) for f in _FREQS]
-    x = math.log10(freq_ghz)
-    k = 10 ** _interp(x, log_f, [math.log10(v) for v in ks])
-    alpha = _interp(x, log_f, als)
+    log_f = math.log10(freq_ghz)
+    suffix = "V" if polarization == "V" else "H"
+    k = 10 ** _p838_term("k" + suffix, log_f)
+    alpha = _p838_term("alpha" + suffix, log_f)
     return float(k), float(alpha)
-
-
-def _interp(x: float, xs: list[float], ys: list[float]) -> float:
-    if x <= xs[0]:
-        return ys[0]
-    if x >= xs[-1]:
-        return ys[-1]
-    for i in range(1, len(xs)):
-        if x <= xs[i]:
-            x0, x1 = xs[i - 1], xs[i]
-            y0, y1 = ys[i - 1], ys[i]
-            t = (x - x0) / (x1 - x0)
-            return y0 + t * (y1 - y0)
-    return ys[-1]
 
 
 def specific_attenuation_db_km(
