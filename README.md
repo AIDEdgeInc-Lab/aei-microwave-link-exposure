@@ -11,6 +11,10 @@ link is exposed to weather, using published ITU-R engineering methods.
 Includes **Microwave Weather Explorer**, a small map-based application
 built entirely on top of the library.
 
+Developed by AID Edge Inc. as the engineering foundation of Velorona. [Velorona for QGIS](https://plugins.qgis.org/plugins/velorona/)
+calls this library directly; [Velorona Map](https://map.velorona.ai/) runs a browser port held to it by
+parity tests.
+
 Part of the AID Edge `aei-*` engineering library family, alongside
 [`aei-geo-features`](https://github.com/AIDEdgeInc-Lab/aei-geo-features).
 
