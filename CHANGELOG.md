@@ -7,6 +7,11 @@ published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
 
 Security baseline: invalid numbers and missing upstream values are refused instead of flowing into a result. Valid inputs give the same results as 0.2.0.
 
+### Changed (Python support and dependency floors)
+
+- **Python 3.9 is no longer supported (`requires-python >=3.10`).** Every patched release of `requests` (2.33.0+) and `urllib3` (2.7.0+/2.8.0+) requires Python 3.10, so on Python 3.9 the network extras could only install versions with known advisories. pip on Python 3.9 keeps resolving the previous release.
+- **Security floors in the network extras:** `requests>=2.33` and `urllib3>=2.8`. These close CVE-2026-25645 (requests) and CVE-2026-44431, -44432, -97687, -97688 and -97689 (urllib3). `urllib3` is listed directly so that an environment cannot keep an older, vulnerable copy that `requests` alone would accept.
+
 ### Changed (behaviour on invalid or missing data)
 
 - **A NaN or infinite rain rate is refused.** `WeatherObservation` raises `ValueError` for a non-finite `rain_rate_mm_h`, and for a non-finite `temperature_c` or `wind_speed_kmh` (None stays allowed). In 0.2.0 a NaN rain rate passed the sign check. At one endpoint, `calculate_exposure` silently used the other endpoint's rain, so the result looked fully measured. At both endpoints, the exposure ratio was NaN and was classified "low".

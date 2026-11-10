@@ -51,6 +51,8 @@ control below is covered by tests; the test file is named.
 | Domain values | `WeatherObservation` rain rate must be finite and non-negative (temperature and wind finite or None); `MicrowaveLink` frequency and fade margin finite and positive; `MicrowaveSite` coordinates in range; exposure thresholds finite, non-negative and ordered | `weather.py`, `microwave.py`, `exposure.py` | `test_weather.py`, `test_microwave.py`, `test_security_baseline.py` |
 | Truncated result sets | ArcGIS `exceededTransferLimit` is returned to the caller, never hidden | `infrastructure/_arcgis.py` | `test_infrastructure_arcgis.py` |
 
+Dependencies: the network extras require `requests>=2.33` and `urllib3>=2.8` (security floors; Python >=3.10).
+
 Privacy: the network adapters send the queried coordinates (or bounding box) to the public service they call. The core never makes
 a request; a caller can supply its own `WeatherProvider` that reads local data instead.
 
