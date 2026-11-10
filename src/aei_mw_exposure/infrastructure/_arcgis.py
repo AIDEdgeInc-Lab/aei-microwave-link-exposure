@@ -51,9 +51,11 @@ def query_arcgis_layer(
     resp = requests.get(query_url, params=params, timeout=timeout)
     resp.raise_for_status()
     data = resp.json()
+    if not isinstance(data, dict):
+        raise RuntimeError(f"ArcGIS query to {query_url} returned a response that is not a JSON object")
     if "error" in data:
         raise RuntimeError(f"ArcGIS query to {query_url} failed: {data['error']}")
     return ArcGISQueryResult(
-        features=data.get("features", []),
+        features=[f for f in (data.get("features") or []) if isinstance(f, dict)],
         exceeded_transfer_limit=bool(data.get("exceededTransferLimit", False)),
     )
