@@ -72,7 +72,7 @@ standards, implemented transparently and independently.
 Built for anyone who operates or maintains microwave backhaul or
 point-to-point wireless infrastructure and needs to weigh weather as a
 possible cause before dispatching a technician -- WISP operators, ISP and
-telecom field/NOC teams, transport and network engineers, and private
+telecom field and network operations teams, transport and network engineers, and private
 network operators alike. It is not limited to any one type of operator or
 any one region.
 
