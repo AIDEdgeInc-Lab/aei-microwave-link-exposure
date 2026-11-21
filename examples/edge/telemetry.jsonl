@@ -1,0 +1,5 @@
+{"site_id": "DEMO-A", "timestamp": "2026-11-21T10:00Z", "rain_rate_mm_h": 2.0}
+{"site_id": "DEMO-B", "timestamp": "2026-11-21T10:00Z", "rain_rate_mm_h": 4.0}
+{"site_id": "DEMO-C", "timestamp": "2026-11-21T10:00Z", "rain_rate_mm_h": 0.0}
+{"site_id": "DEMO-A", "timestamp": "2026-11-21T10:05Z", "rain_rate_mm_h": 45.0}
+{"site_id": "DEMO-C", "timestamp": "2026-11-21T10:05Z", "rain_rate_mm_h": NaN}

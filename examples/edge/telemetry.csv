@@ -1,0 +1,5 @@
+site_id,timestamp,rain_rate_mm_h,temperature_c
+DEMO-A,2026-11-21T10:00Z,2.0,5.5
+DEMO-B,2026-11-21T10:00Z,4.0,
+DEMO-C,2026-11-21T10:00Z,0.0,
+DEMO-A,2026-11-21T10:05Z,45.0,5.1
