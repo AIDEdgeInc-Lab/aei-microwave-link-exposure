@@ -112,6 +112,17 @@ def test_bad_links_file_is_refused(tmp_path, doc, msg):
         load_links(str(p))
 
 
+def test_links_error_never_repeats_a_full_precision_coordinate(tmp_path):
+    p = tmp_path / "links.json"
+    p.write_text(json.dumps({"links": [{"id": "L", "frequency_ghz": 18, "polarization": "V", "fade_margin_db": 1,
+                                        "site_a": {"id": "A", "latitude": 95.1234567, "longitude": -79.3832111},
+                                        "site_b": {"id": "B", "latitude": 0.1, "longitude": 0}}]}))
+    with pytest.raises(ConfigError) as info:
+        load_links(str(p))
+    assert "links[0].site_a" in str(info.value)
+    assert "95.1234567" not in str(info.value) and "79.3832111" not in str(info.value)
+
+
 def test_main_exit_codes(tmp_path, capsys):
     assert main(["--links", LINKS, str(EXAMPLES / "telemetry.jsonl")]) == 0
     assert main(["--links", str(tmp_path / "missing.json"), str(EXAMPLES / "telemetry.jsonl")]) == 2

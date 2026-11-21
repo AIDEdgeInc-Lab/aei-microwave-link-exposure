@@ -130,8 +130,9 @@ def load_links(path: str) -> List[MicrowaveLink]:
             try:
                 site = MicrowaveSite(id=sid, name=str(s.get("name") or sid), latitude=lat, longitude=lon,
                                      provenance=Provenance.USER_PROVIDED)
-            except ValueError as exc:
-                raise ConfigError(f"{where}.{end}: {exc}") from None
+            except ValueError:
+                # Position only: the library's message repeats the coordinate at full precision.
+                raise ConfigError(f"{where}.{end}: latitude must be within [-90, 90] and longitude within [-180, 180]") from None
             sites[sid] = site
             ends.append(site)
         try:
