@@ -21,6 +21,13 @@ Adds an offline edge runner. The library API and every calculated value are unch
 
 - README wording: "field and network operations teams".
 - `.gitignore`: local secret files (`.env`, `*.pem`, `*.key`).
+- `aei-mw-edge`: a links-file coordinate error names the position (`links[0].site_a`), not the coordinate value.
+
+### Roadmap
+
+- **0.4.0 = semver-correct release together with a QGIS plugin compatibility update.** 0.3.1 adds a feature in a patch
+  number only because the Velorona QGIS plugin accepts `aei-microwave-link-exposure<0.4`. The next minor release (0.4.0) is
+  planned together with a plugin update that widens that range.
 
 ## [0.3.0] - unreleased (release candidate)
 
