@@ -403,6 +403,19 @@ pip install -e ".[explorer]"                  # + the Streamlit map Explorer
 pip install -e ".[dev]"                       # + pytest
 ```
 
+### Edge devices (offline)
+
+The core library has no dependencies and makes no network calls, so it runs as is on small ARM64 devices such as an NVIDIA
+Jetson Orin Nano (Python 3.10+, the JetPack 6 default). `aei-mw-edge` turns a link list and a weather telemetry stream into
+one JSON decision per link:
+
+```bash
+pip install "aei-microwave-link-exposure[edge]"
+aei-mw-edge --links examples/edge/links.json examples/edge/telemetry.jsonl
+```
+
+Formats, rejection rules and the on-device resource check are in [docs/EDGE.md](docs/EDGE.md).
+
 ## Quick start
 
 ```python
