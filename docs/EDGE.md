@@ -81,7 +81,8 @@ The script uses a synthetic, seeded load and prints runtime, peak Python allocat
 
 ## Measured results
 
-None yet. Fill this table only with output from `scripts/edge_resource_check.py` run on the device.
+None yet. Fill this table only with output from `scripts/edge_resource_check.py` run on the device. Step-by-step device
+instructions, including where each column comes from: [EDGE_JETSON_RUNBOOK.md](EDGE_JETSON_RUNBOOK.md).
 
 | Device | JetPack / Python | Links × readings | Runtime (s) | Peak alloc (MiB) | Peak RSS (MiB) | Date |
 |---|---|---|---|---|---|---|
