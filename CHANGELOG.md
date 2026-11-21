@@ -20,6 +20,7 @@ Adds an offline edge runner. The library API and every calculated value are unch
 ### Changed
 
 - README wording: "field and network operations teams".
+- `.gitignore`: local secret files (`.env`, `*.pem`, `*.key`).
 
 ## [0.3.0] - unreleased (release candidate)
 
