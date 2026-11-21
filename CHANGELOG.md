@@ -3,6 +3,24 @@
 All notable changes to this project are recorded here. This project is
 published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
 
+## [0.3.1] - unreleased (release candidate)
+
+Adds an offline edge runner. The library API and every calculated value are unchanged from 0.3.0.
+
+### Added
+
+- **`aei-mw-edge`** (also `python -m aei_mw_exposure.edge`): reads a link list and a weather telemetry stream (JSON Lines or CSV,
+  file or stdin) and writes one JSON decision per link, computed by `calculate_exposure`. Standard library only, no network calls,
+  memory bounded by the number of sites and links. NaN, infinite, negative or non-numeric readings, unknown sites and oversized lines
+  are rejected with a fixed reason code on stderr and never produce a decision. See `docs/EDGE.md`.
+- **`[edge]` extra.** It installs nothing extra (the core package already has no dependencies); it names the edge install.
+- `scripts/edge_resource_check.py`: runtime and peak-memory check on a synthetic load, for running on the target device.
+- `examples/edge/`: demo links and telemetry.
+
+### Changed
+
+- README wording: "field and network operations teams".
+
 ## [0.3.0] - unreleased (release candidate)
 
 Security baseline: invalid numbers and missing upstream values are refused instead of flowing into a result. Valid inputs give the same results as 0.2.0.
