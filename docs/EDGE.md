@@ -81,21 +81,36 @@ The script uses a synthetic, seeded load and prints runtime, peak Python allocat
 
 ## Measured results
 
-Only values produced by `scripts/edge_resource_check.py` on the device. Raw output: [edge-runs/jetson-2026-11-22.txt](edge-runs/jetson-2026-11-22.txt).
+Only values produced by `scripts/edge_resource_check.py` on the device.
 
-**Run of 2026-11-22: the runbook's install step failed on this board.** The board is L4T R35.5 (JetPack 5) with Python 3.8.10.
-`python3 -m venv` fails (no `ensurepip`), and `pip install` refuses the package (`requires a different Python: 3.8.10 not in
-'>=3.10'`). The numbers below come from the runbook's fallback (unpacked wheel on `PYTHONPATH`) on Python 3.8.10, which this
-package does **not** support. They describe this code on this hardware, not a supported installation. The pytest smoke test could
-not run (pytest 9 needs Python 3.10).
+### Official run: Python 3.11 on JetPack 5 (2026-11-22)
+
+Raw output: [edge-runs/jetson-2026-11-22-py311.txt](edge-runs/jetson-2026-11-22-py311.txt). The board's system Python is 3.8, so a
+standalone CPython 3.11.17 (python-build-standalone, the build `uv python install` uses) was unpacked in the user's home; the
+system Python was not changed. In a 3.11 venv the rc2 wheel installed normally (`pip install "aei-microwave-link-exposure[edge]"`,
+no other package), the sample runs matched the documented format and counts, the smoke test passed (24) and the full test suite
+passed (286) against the installed wheel.
+
+| Device | JetPack / Python | Links × readings | Runtime (s) | Peak alloc (MiB) | Peak RSS (MiB) | Date | Script |
+|---|---|---|---|---|---|---|---|
+| Jetson Orin Nano class, 7.4 GiB | L4T R35.5 (JetPack 5) / 3.11.17 | 200 × 100 | 14.911 | 0.12 | 26.4 | 2026-11-22 | `f151ad1` |
+| Jetson Orin Nano class, 7.4 GiB | L4T R35.5 (JetPack 5) / 3.11.17 | 2000 × 500 | not completed | — | — | 2026-11-22 | `f151ad1` |
+
+The 2000 × 500 run did not finish: the board dropped off USB during it (cause not established). It has to be re-run.
+
+### Earlier run, unsupported Python 3.8 (2026-11-22)
+
+Raw output: [edge-runs/jetson-2026-11-22.txt](edge-runs/jetson-2026-11-22.txt). The runbook's install step failed on Python 3.8.10
+(`requires a different Python: 3.8.10 not in '>=3.10'`); these numbers come from the fallback (unpacked wheel on `PYTHONPATH`) on a
+Python this package does **not** support. They describe this code on this hardware, not a supported installation.
 
 | Device | JetPack / Python | Links × readings | Runtime (s) | Peak alloc (MiB) | Peak RSS (MiB) | Date | Script |
 |---|---|---|---|---|---|---|---|
 | Jetson Orin Nano class, 7.4 GiB | L4T R35.5 (JetPack 5) / 3.8.10 (unsupported, fallback) | 200 × 100 | 6.845 | 0.12 | 20.8 | 2026-11-22 | `f151ad1` |
 | Jetson Orin Nano class, 7.4 GiB | L4T R35.5 (JetPack 5) / 3.8.10 (unsupported, fallback) | 2000 × 500 | 344.994 | 0.92 | 456.0 | 2026-11-22 | `f151ad1` |
 
-The same runs with the first version of the script (which kept every decision line in an in-memory buffer, so its peak alloc
+The same 3.8 runs with the first version of the script (which kept every decision line in an in-memory buffer, so its peak alloc
 measures that buffer, not the runner): 200 × 100: 7.1 s, 12.15 MiB alloc, 33.6 MiB RSS; 2000 × 500: 368.243 s, 513.29 MiB alloc,
 788.4 MiB RSS. Peak RSS in every row includes the synthetic input, which the script builds in memory before the run.
 
-Still TODO: a run on a supported install (JetPack 6, or any Python 3.10+ on the device).
+Still TODO: the 2000 × 500 run on Python 3.11.
