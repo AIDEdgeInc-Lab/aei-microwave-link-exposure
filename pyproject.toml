@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aei-microwave-link-exposure"
-version = "0.3.0"
+version = "0.3.1"
 description = "Given weather observations and a terrestrial microwave point-to-point link, calculate the link's weather-related exposure using transparent ITU-R engineering methods."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -28,7 +28,13 @@ dependencies = []
 open-meteo = ["requests>=2.33", "urllib3>=2.8"]
 infrastructure = ["requests>=2.33", "urllib3>=2.8"]
 explorer = ["streamlit>=1.30", "streamlit-folium>=0.20", "folium>=0.15", "requests>=2.33", "urllib3>=2.8"]
+# "edge" adds nothing: the core package already has zero runtime dependencies and makes no network calls. The extra exists so
+# `pip install aei-microwave-link-exposure[edge]` documents the intent and stays valid if an edge-only dependency is ever needed.
+edge = []
 dev = ["pytest>=7.0", "requests>=2.33", "urllib3>=2.8"]
+
+[project.scripts]
+aei-mw-edge = "aei_mw_exposure.edge:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

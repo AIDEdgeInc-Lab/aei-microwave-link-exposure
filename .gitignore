@@ -5,3 +5,8 @@ __pycache__/
 .venv/
 dist/
 build/
+
+# Local secrets and build output (never commit)
+.env
+*.pem
+*.key

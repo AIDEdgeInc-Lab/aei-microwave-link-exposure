@@ -1,0 +1,138 @@
+Jetson full resource run for aei-microwave-link-exposure 0.3.1 (rc2 wheel, sha256 1164f250...), Python 3.11.17 venv.
+Date: 2026-11-22 (UTC, from the Mac; the board's clock reads 1970). Board back after the earlier USB drop; official adapter connected.
+Run as one detached script under nohup/setsid with tegrastats logging alongside (docs/edge-runs/jetson-2026-11-22-py311-tegrastats.log).
+Board: L4T R35.5 (JetPack 5), 7.4 GiB RAM, power mode 15W (nvpmodel -q), CPU governor schedutil, no throttling seen.
+Sections: pre-run health, the detached run (A official 200x100, B 200x100 on unsupported 3.8 for comparison, A2 repeat, C official
+2000x500), then a diagnostic (tm_ab.py) timing the runner with tracemalloc off and on. "~" replaces the board user's home path.
+
+##### PRE-RUN HEALTH (the 30 s idle tegrastats is in jetson-2026-11-22-py311-tegrastats-prerun.log; the rest is here)
+## nvpmodel -q
+NV Power Mode: 15W
+0
+NVPM ERROR: Error opening /sys/kernel/nvpmodel_emc_cap/emc_iso_cap: 13
+NVPM ERROR: failed to read PARAM EMC: ARG MAX_FREQ: PATH /sys/kernel/nvpmodel_emc_cap/emc_iso_cap
+## jetson_clocks / cpu governors
+      6 schedutil
+cpu0 cur/max kHz: 1510400/1510400 (hw max 1510400)
+cpu4 cur/max kHz: 729600/1510400 (hw max 1510400)
+6
+## disk
+/dev/mmcblk1p1  233G   33G  191G  15% /
+## RAM
+              total        used        free      shared  buff/cache   available
+Mem:           7451         885        5564          28        1002        6343
+Swap:          3725           0        3725
+## thermal zones
+CPU-therm: 34 C
+GPU-therm: 35 C
+CV0-therm: -256 C
+CV1-therm: -256 C
+CV2-therm: -256 C
+SOC0-therm: 32 C
+SOC1-therm: 33 C
+SOC2-therm: 34 C
+tj-therm: 35 C
+## tegrastats 30 s
+
+##### DETACHED RUN LOG (run.log)
+
+== A: 200x100 on Python 3.11 (official) (uptime 103.13 s; nvpmodel: NV Power Mode: 15W; cpu0 1510400 kHz)
+$ python scripts/edge_resource_check.py
+{
+  "load": "synthetic",
+  "library_version": "0.3.1",
+  "python": "3.11.17",
+  "machine": "aarch64",
+  "platform": "Linux-5.10.192-tegra-aarch64-with-glibc2.31",
+  "links": 200,
+  "readings_per_site": 100,
+  "observations": 20100,
+  "decisions": 39800,
+  "rejected": 0,
+  "runtime_s": 15.147,
+  "observations_per_s": 1327,
+  "peak_python_alloc_mib_during_run": 0.12,
+  "peak_rss_mib_process": 26.4,
+  "peak_rss_mib_before_run": 17.5,
+  "output": "discarded (not buffered)",
+  "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input."
+}
+[exit=0]
+
+== B: 200x100 on Python 3.8.10 fallback (diagnostic only, unsupported) (uptime 121.90 s; nvpmodel: NV Power Mode: 15W; cpu0 1510400 kHz)
+$ PYTHONPATH=~/edge-site python3 scripts/edge_resource_check.py
+{
+  "load": "synthetic",
+  "library_version": "0.3.1",
+  "python": "3.8.10",
+  "machine": "aarch64",
+  "platform": "Linux-5.10.192-tegra-aarch64-with-glibc2.29",
+  "links": 200,
+  "readings_per_site": 100,
+  "observations": 20100,
+  "decisions": 39800,
+  "rejected": 0,
+  "runtime_s": 6.759,
+  "observations_per_s": 2974,
+  "peak_python_alloc_mib_during_run": 0.12,
+  "peak_rss_mib_process": 21.0,
+  "peak_rss_mib_before_run": 12.3,
+  "output": "discarded (not buffered)",
+  "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input."
+}
+[exit=0]
+
+== A2: 200x100 on Python 3.11 again (diagnostic) (uptime 129.12 s; nvpmodel: NV Power Mode: 15W; cpu0 1510400 kHz)
+$ python scripts/edge_resource_check.py
+{
+  "load": "synthetic",
+  "library_version": "0.3.1",
+  "python": "3.11.17",
+  "machine": "aarch64",
+  "platform": "Linux-5.10.192-tegra-aarch64-with-glibc2.31",
+  "links": 200,
+  "readings_per_site": 100,
+  "observations": 20100,
+  "decisions": 39800,
+  "rejected": 0,
+  "runtime_s": 14.924,
+  "observations_per_s": 1347,
+  "peak_python_alloc_mib_during_run": 0.12,
+  "peak_rss_mib_process": 26.5,
+  "peak_rss_mib_before_run": 17.6,
+  "output": "discarded (not buffered)",
+  "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input."
+}
+[exit=0]
+
+== C: 2000x500 on Python 3.11 (official) (uptime 144.32 s; nvpmodel: NV Power Mode: 15W; cpu0 1510400 kHz)
+$ python scripts/edge_resource_check.py --links 2000 --readings 500
+{
+  "load": "synthetic",
+  "library_version": "0.3.1",
+  "python": "3.11.17",
+  "machine": "aarch64",
+  "platform": "Linux-5.10.192-tegra-aarch64-with-glibc2.31",
+  "links": 2000,
+  "readings_per_site": 500,
+  "observations": 1000500,
+  "decisions": 1998000,
+  "rejected": 0,
+  "runtime_s": 754.922,
+  "observations_per_s": 1325,
+  "peak_python_alloc_mib_during_run": 0.8,
+  "peak_rss_mib_process": 459.1,
+  "peak_rss_mib_before_run": 17.7,
+  "output": "discarded (not buffered)",
+  "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input."
+}
+[exit=0]
+
+== done (uptime 905.06 s; nvpmodel: NV Power Mode: 15W; cpu0 1510400 kHz)
+ALL_DONE
+
+##### DIAGNOSTIC: tracemalloc off vs on, 200x100, seconds (two runs each) (tm_ab.py, not part of the package)
+## 3.11
+{"python": "3.11.17", "compiler": "Clang 22.1.3 ", "build": "main Oct  9 2026 15:20:12", "tracemalloc_off": [2.384, 2.391], "tracemalloc_on": [14.129, 14.139]}
+## 3.8 (unsupported, fallback)
+{"python": "3.8.10", "compiler": "GCC 9.4.0", "build": "default Mar 18 2025 20:04:55", "tracemalloc_off": [3.004, 3.003], "tracemalloc_on": [6.58, 6.572]}
