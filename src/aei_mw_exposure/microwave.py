@@ -7,6 +7,7 @@ identity a link needs to be run through the physics layer, nothing more.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 from typing import Dict, Literal, Optional, Union
 
@@ -84,6 +85,10 @@ class MicrowaveLink:
     def __post_init__(self) -> None:
         if self.site_a.id == self.site_b.id:
             raise ValueError("a link's two endpoints must be different sites")
+        for name in ("frequency_ghz", "fade_margin_db"):
+            value = getattr(self, name)
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+                raise ValueError(f"{name} must be a finite number, got {value!r}")
         if self.frequency_ghz <= 0:
             raise ValueError(f"frequency_ghz must be positive, got {self.frequency_ghz}")
         if self.fade_margin_db <= 0:

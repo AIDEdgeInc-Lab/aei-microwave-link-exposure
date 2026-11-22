@@ -387,7 +387,7 @@ limit which region your own uploaded sites can be analyzed for.
 
 | Component | Requirement |
 |---|---|
-| Python | >= 3.9 |
+| Python | >= 3.10 |
 | Core library | none (stdlib only) |
 | Weather / infrastructure adapters | `requests` |
 | Explorer | `streamlit`, `folium`, `streamlit-folium`, `requests` |

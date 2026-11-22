@@ -15,6 +15,8 @@ Three explicitly separated layers, kept distinct on purpose:
 
 from __future__ import annotations
 
+import math
+
 from dataclasses import dataclass
 from typing import Literal, Mapping
 
@@ -70,6 +72,11 @@ def calculate_exposure(
     path, not a measurement of it. That assumption is preserved on the
     result, not just in this docstring -- see ``rain_rate_assumption``.
     """
+    for name, value in (("moderate_threshold", moderate_threshold), ("high_threshold", high_threshold)):
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+            raise ValueError(f"{name} must be a finite, non-negative number, got {value!r}")
+    if moderate_threshold > high_threshold:
+        raise ValueError(f"moderate_threshold ({moderate_threshold}) must not exceed high_threshold ({high_threshold})")
     for site_id in (link.site_a.id, link.site_b.id):
         if site_id not in weather_by_site:
             raise ValueError(f"no weather observation provided for site {site_id!r}")

@@ -52,6 +52,7 @@ actually populated.
 
 from __future__ import annotations
 
+import math
 from typing import Any, Dict, Iterable, List, Tuple
 
 from ..microwave import MicrowaveSite
@@ -132,7 +133,13 @@ def _extract_coords(feature: Dict[str, Any]):
         lat, lon = attrs.get("LATITUDE"), attrs.get("LONGITUDE")
     if lon is None or lat is None:
         return None, None
-    return float(lat), float(lon)
+    try:
+        lat, lon = float(lat), float(lon)
+    except (TypeError, ValueError):
+        return None, None
+    if not (math.isfinite(lat) and math.isfinite(lon) and -90 <= lat <= 90 and -180 <= lon <= 180):
+        return None, None  # reported in `skipped` by load_sites, like a row with no coordinates
+    return lat, lon
 
 
 def group_features_by_location(features: Iterable[Dict[str, Any]]) -> Dict[Tuple[float, float], List[Dict[str, Any]]]:

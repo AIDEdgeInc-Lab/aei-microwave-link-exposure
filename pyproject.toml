@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aei-microwave-link-exposure"
-version = "0.2.0"
+version = "0.3.0"
 description = "Given weather observations and a terrestrial microwave point-to-point link, calculate the link's weather-related exposure using transparent ITU-R engineering methods."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 authors = [{ name = "AID Edge Inc." }]
@@ -22,10 +22,13 @@ classifiers = [
 dependencies = []
 
 [project.optional-dependencies]
-open-meteo = ["requests>=2.31"]
-infrastructure = ["requests>=2.31"]
-explorer = ["streamlit>=1.30", "streamlit-folium>=0.20", "folium>=0.15", "requests>=2.31"]
-dev = ["pytest>=7.0", "requests>=2.31"]
+# Security floors (2026-11): requests>=2.33 and urllib3>=2.8 close CVE-2026-25645 (requests) and five urllib3 advisories
+# (CVE-2026-44431, -44432, -97687, -97688, -97689). urllib3 is listed directly because requests alone (urllib3<3) would let an
+# environment keep a vulnerable urllib3. Both need Python >=3.10, which is why requires-python is >=3.10.
+open-meteo = ["requests>=2.33", "urllib3>=2.8"]
+infrastructure = ["requests>=2.33", "urllib3>=2.8"]
+explorer = ["streamlit>=1.30", "streamlit-folium>=0.20", "folium>=0.15", "requests>=2.33", "urllib3>=2.8"]
+dev = ["pytest>=7.0", "requests>=2.33", "urllib3>=2.8"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

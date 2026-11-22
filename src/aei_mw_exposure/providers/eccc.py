@@ -90,6 +90,8 @@ def find_nearest_station(
     resp = requests.get(SWOB_REALTIME_URL, params=params, timeout=timeout)
     resp.raise_for_status()
     data = resp.json()
+    if not isinstance(data, dict):
+        raise ValueError("SWOB-Realtime returned a response that is not a JSON object; nothing was read.")
 
     latest_by_station: Dict[str, Dict[str, Any]] = {}
     for feature in data.get("features", []):
@@ -107,8 +109,10 @@ def find_nearest_station(
 
     best_name, best_feature, best_distance = None, None, math.inf
     for name, feature in latest_by_station.items():
-        coords = feature["geometry"]["coordinates"]
-        station_lon, station_lat = coords[0], coords[1]
+        station = _station_point(feature)
+        if station is None:
+            continue  # a station without usable coordinates cannot be the nearest one
+        station_lat, station_lon = station
         distance = haversine_km(latitude, longitude, station_lat, station_lon)
         if distance < best_distance:
             best_name, best_feature, best_distance = name, feature, distance
@@ -119,7 +123,8 @@ def find_nearest_station(
     props = best_feature["properties"]
     coords = best_feature["geometry"]["coordinates"]
     rain_rate = props.get("pcpn_amt_pst1hr")  # mm accumulated in the past hour; not every station reports this
-    reports_precipitation = rain_rate is not None
+    # A value that is not a finite, non-negative number is treated like no report at all, never as a reading.
+    reports_precipitation = _finite_number(rain_rate) and rain_rate >= 0
     observation = WeatherObservation(
         latitude=coords[1],
         longitude=coords[0],
@@ -171,14 +176,16 @@ def get_radar_precipitation(latitude: float, longitude: float, timeout: float = 
         data = resp.json()
     except Exception:
         return None
+    if not isinstance(data, dict):
+        return None
 
     features: List[Dict[str, Any]] = data.get("features", [])
     if not features:
         return None
     props = features[0].get("properties", {})
     value = props.get("value")
-    if value is None:
-        return None
+    if not _finite_number(value) or value < 0:
+        return None  # no usable reading: same answer as "no data here", never a guessed value
 
     return WeatherObservation(
         latitude=latitude,
@@ -187,3 +194,18 @@ def get_radar_precipitation(latitude: float, longitude: float, timeout: float = 
         rain_rate_mm_h=float(value),
         source=SOURCE_RADAR,
     )
+
+
+def _finite_number(value: Any) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
+def _station_point(feature: Dict[str, Any]) -> Optional[Tuple[float, float]]:
+    """(lat, lon) of a SWOB feature, or None when the geometry is missing or not a valid WGS84 point."""
+    coords = (feature.get("geometry") or {}).get("coordinates")
+    if not isinstance(coords, (list, tuple)) or len(coords) < 2:
+        return None
+    lon, lat = coords[0], coords[1]
+    if not (_finite_number(lat) and _finite_number(lon) and -90 <= lat <= 90 and -180 <= lon <= 180):
+        return None
+    return float(lat), float(lon)

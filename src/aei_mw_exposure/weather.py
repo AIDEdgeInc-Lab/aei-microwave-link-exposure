@@ -9,6 +9,7 @@ plugin framework.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Iterable, Optional, Protocol, runtime_checkable
 
@@ -42,8 +43,20 @@ class WeatherObservation:
     site_id: Optional[str] = None
 
     def __post_init__(self) -> None:
+        # NaN fails every comparison, so without the finite check a NaN rain rate would pass the sign check, give a NaN exposure
+        # ratio, and be classified "low". A missing reading must be reported as missing, never as a number.
+        if not _is_finite(self.rain_rate_mm_h):
+            raise ValueError(f"rain_rate_mm_h must be a finite number: {self.rain_rate_mm_h!r}")
         if self.rain_rate_mm_h < 0:
             raise ValueError(f"rain_rate_mm_h cannot be negative: {self.rain_rate_mm_h}")
+        for name in ("temperature_c", "wind_speed_kmh"):
+            value = getattr(self, name)
+            if value is not None and not _is_finite(value):
+                raise ValueError(f"{name} must be a finite number or None: {value!r}")
+
+
+def _is_finite(value) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
 
 @runtime_checkable
