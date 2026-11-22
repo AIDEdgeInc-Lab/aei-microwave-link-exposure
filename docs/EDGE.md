@@ -81,22 +81,45 @@ The script uses a synthetic, seeded load and prints runtime, peak Python allocat
 
 ## Measured results
 
-Only values produced by `scripts/edge_resource_check.py` on the device.
+Only values produced by `scripts/edge_resource_check.py` (and the diagnostic named below) on the device.
 
 ### Official run: Python 3.11 on JetPack 5 (2026-11-22)
 
-Raw output: [edge-runs/jetson-2026-11-22-py311.txt](edge-runs/jetson-2026-11-22-py311.txt). The board's system Python is 3.8, so a
-standalone CPython 3.11.17 (python-build-standalone, the build `uv python install` uses) was unpacked in the user's home; the
-system Python was not changed. In a 3.11 venv the rc2 wheel installed normally (`pip install "aei-microwave-link-exposure[edge]"`,
-no other package), the sample runs matched the documented format and counts, the smoke test passed (24) and the full test suite
-passed (286) against the installed wheel.
+Raw output: [edge-runs/jetson-2026-11-22-py311-full.txt](edge-runs/jetson-2026-11-22-py311-full.txt); tegrastats during the run:
+[edge-runs/jetson-2026-11-22-py311-tegrastats.log](edge-runs/jetson-2026-11-22-py311-tegrastats.log) (798 s, 1 s interval) and
+before it ([prerun](edge-runs/jetson-2026-11-22-py311-tegrastats-prerun.log), 30 s idle).
 
-| Device | JetPack / Python | Links × readings | Runtime (s) | Peak alloc (MiB) | Peak RSS (MiB) | Date | Script |
-|---|---|---|---|---|---|---|---|
-| Jetson Orin Nano class, 7.4 GiB | L4T R35.5 (JetPack 5) / 3.11.17 | 200 × 100 | 14.911 | 0.12 | 26.4 | 2026-11-22 | `f151ad1` |
-| Jetson Orin Nano class, 7.4 GiB | L4T R35.5 (JetPack 5) / 3.11.17 | 2000 × 500 | not completed | — | — | 2026-11-22 | `f151ad1` |
+The board's system Python is 3.8, so a standalone CPython 3.11.17 (python-build-standalone, the build `uv python install` uses) was
+unpacked in the user's home; the system Python was not changed. In a 3.11 venv the rc2 wheel installed normally
+(`pip install "aei-microwave-link-exposure[edge]"`, no other package), the sample runs matched the documented format and counts,
+the smoke test passed (24) and the full test suite passed (286) against the installed wheel. The two resource checks ran in one
+detached script (`nohup`/`setsid`) with tegrastats alongside.
 
-The 2000 × 500 run did not finish: the board dropped off USB during it (cause not established). It has to be re-run.
+| Device | JetPack / Python | Links × readings | Runtime (s) | Observations/s | Peak alloc (MiB) | Peak RSS (MiB) | Date | Script |
+|---|---|---|---|---|---|---|---|---|
+| Jetson Orin Nano class, 7.4 GiB, 15W mode | L4T R35.5 (JetPack 5) / 3.11.17 | 200 × 100 | 15.147 | 1327 | 0.12 | 26.4 | 2026-11-22 | `f151ad1` |
+| Jetson Orin Nano class, 7.4 GiB, 15W mode | L4T R35.5 (JetPack 5) / 3.11.17 | 2000 × 500 | 754.922 | 1325 | 0.80 | 459.1 | 2026-11-22 | `f151ad1` |
+
+A repeat of 200 × 100 gave 14.924 s (1347 obs/s). Throughput is the same at both sizes (1327 vs 1325 observations/s), and peak
+RSS grows with the synthetic input the script builds in memory, not with the run.
+
+**Board health (tegrastats, nvpmodel).** Power mode 15W (`nvpmodel -q`; the command also prints two permission errors reading
+an EMC cap file, because it ran without root; the mode was not changed). During the 798 s run: junction temperature peaked at
+47.0 °C (CPU 45.9 °C), swap 0 MiB, RAM peak 1284 MiB of 7451 MiB, the busiest core at 100 % at the 1510 MHz maximum (a handful of
+ramp-up samples at 729–1113 MHz), no thermal throttling. Idle before the run: 35–36 °C, 729 MHz. Sensors CV0–CV2 report −256 °C
+(not populated).
+
+**What `runtime_s` measures.** The resource script runs the runner under `tracemalloc` (to get peak allocation), which slows it a
+lot and by a different amount on each Python. Measured on this board with `edge-runs/tm_ab.py` (200 × 100, two runs each, seconds):
+
+| Python | tracemalloc off | tracemalloc on |
+|---|---|---|
+| 3.11.17 (python-build-standalone, Clang) | 2.38, 2.39 | 14.13, 14.14 |
+| 3.8.10 (system, GCC 9.4, unsupported) | 3.00, 3.00 | 6.58, 6.57 |
+
+Without `tracemalloc`, 3.11 is faster than 3.8 (20,100 observations in 2.38 s, about 8,400 per second, vs 3.00 s, about 6,700
+per second); with it, 3.11 is 5.9× slower than untraced and 3.8 only 2.2×. So `runtime_s` and `observations_per_s` in the table above are the traced
+figures: use them to compare runs of this script with each other, not as the runner's real throughput.
 
 ### Earlier run, unsupported Python 3.8 (2026-11-22)
 
@@ -113,4 +136,3 @@ The same 3.8 runs with the first version of the script (which kept every decisio
 measures that buffer, not the runner): 200 × 100: 7.1 s, 12.15 MiB alloc, 33.6 MiB RSS; 2000 × 500: 368.243 s, 513.29 MiB alloc,
 788.4 MiB RSS. Peak RSS in every row includes the synthetic input, which the script builds in memory before the run.
 
-Still TODO: the 2000 × 500 run on Python 3.11.
