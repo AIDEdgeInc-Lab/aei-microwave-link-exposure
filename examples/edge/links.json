@@ -1,0 +1,8 @@
+{"links": [
+  {"id": "DEMO-L1", "frequency_ghz": 18, "polarization": "V", "fade_margin_db": 32,
+   "site_a": {"id": "DEMO-A", "latitude": 43.65, "longitude": -79.38},
+   "site_b": {"id": "DEMO-B", "latitude": 43.78, "longitude": -79.23}},
+  {"id": "DEMO-L2", "frequency_ghz": 23, "polarization": "H", "fade_margin_db": 25,
+   "site_a": {"id": "DEMO-B", "latitude": 43.78, "longitude": -79.23},
+   "site_b": {"id": "DEMO-C", "latitude": 43.70, "longitude": -79.10}}
+]}

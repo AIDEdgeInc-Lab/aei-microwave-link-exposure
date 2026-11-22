@@ -72,7 +72,7 @@ standards, implemented transparently and independently.
 Built for anyone who operates or maintains microwave backhaul or
 point-to-point wireless infrastructure and needs to weigh weather as a
 possible cause before dispatching a technician -- WISP operators, ISP and
-telecom field/NOC teams, transport and network engineers, and private
+telecom field and network operations teams, transport and network engineers, and private
 network operators alike. It is not limited to any one type of operator or
 any one region.
 
@@ -402,6 +402,19 @@ pip install -e ".[infrastructure]"            # + the Ontario GeoHub / ISED real
 pip install -e ".[explorer]"                  # + the Streamlit map Explorer
 pip install -e ".[dev]"                       # + pytest
 ```
+
+### Edge devices (offline)
+
+The core library has no dependencies and makes no network calls, so it runs as is on small ARM64 devices such as an NVIDIA
+Jetson Orin Nano (Python 3.10+, the JetPack 6 default). `aei-mw-edge` turns a link list and a weather telemetry stream into
+one JSON decision per link:
+
+```bash
+pip install "aei-microwave-link-exposure[edge]"
+aei-mw-edge --links examples/edge/links.json examples/edge/telemetry.jsonl
+```
+
+Formats, rejection rules and the on-device resource check are in [docs/EDGE.md](docs/EDGE.md).
 
 ## Quick start
 
