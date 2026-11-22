@@ -3,7 +3,7 @@
 All notable changes to this project are recorded here. This project is
 published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
 
-## [0.3.0] - unreleased (release candidate)
+## [0.3.0] - 2026-11-22
 
 Security baseline: invalid numbers and missing upstream values are refused instead of flowing into a result. Valid inputs give the same results as 0.2.0.
 
