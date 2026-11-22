@@ -1,0 +1,218 @@
+Jetson run of docs/EDGE_JETSON_RUNBOOK.md for aei-microwave-link-exposure 0.3.1 (rc2 wheel, sha256 1164f250...).
+Date: 2026-11-22 (UTC, from the Mac; the board's clock reads 1970-01-01). Driven over SSH (USB link-local), one command per block.
+Board: NVIDIA Jetson Orin Nano class, L4T R35.5 (JetPack 5), 7.4 GiB RAM, Python 3.8.10, no internet.
+Raw console output below, unedited except that the board user's home directory path is written as "~" (private name).
+Every command is shown after "$ " and followed by its exit status.
+
+RESULT: runbook step 4 FAILED (failure point 1). python3 -m venv: ensurepip missing; pip install: "requires a different Python:
+3.8.10 not in '>=3.10'". The runbook's fallback (unpacked wheel on PYTHONPATH) then ran on the unsupported Python 3.8.10: sample
+output matches the documented format and counts; the pytest smoke test cannot run on 3.8; both resource checks completed.
+The first resource-check script buffered all decisions in memory (fixed in commit f151ad1); both sizes were re-run with the fix.
+
+## Step 2: check the device and the files
+
+$ uname -m
+aarch64
+[exit=0]
+
+$ cat /etc/nv_tegra_release
+# R35 (release), REVISION: 5.0, GCID: 35550185, BOARD: t186ref, EABI: aarch64, DATE: Tue Feb 20 04:46:31 UTC 2024
+[exit=0]
+
+$ python3 --version
+Python 3.8.10
+[exit=0]
+
+$ (cd wheels && sha256sum -c SHA256SUMS)
+aei_microwave_link_exposure-0.3.1-py3-none-any.whl: OK
+aei_microwave_link_exposure-0.3.1.tar.gz: OK
+[exit=0]
+## Step 3: offline check
+
+$ python3 -c "import urllib.request; urllib.request.urlopen('https://pypi.org', timeout=3)" && echo "STILL ONLINE" || echo "offline: OK"
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/urllib/request.py", line 1354, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/usr/lib/python3.8/http/client.py", line 1256, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1302, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1251, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1011, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.8/http/client.py", line 951, in send
+    self.connect()
+  File "/usr/lib/python3.8/http/client.py", line 1418, in connect
+    super().connect()
+  File "/usr/lib/python3.8/http/client.py", line 922, in connect
+    self.sock = self._create_connection(
+  File "/usr/lib/python3.8/socket.py", line 787, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/usr/lib/python3.8/urllib/request.py", line 222, in urlopen
+    return opener.open(url, data, timeout)
+  File "/usr/lib/python3.8/urllib/request.py", line 525, in open
+    response = self._open(req, data)
+  File "/usr/lib/python3.8/urllib/request.py", line 542, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/usr/lib/python3.8/urllib/request.py", line 502, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.8/urllib/request.py", line 1397, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "/usr/lib/python3.8/urllib/request.py", line 1357, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>
+offline: OK
+[exit=0]
+## Step 4: install from the local wheel
+
+$ python3 -m venv ~/venv-velorona-edge
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.8-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: ['~/venv-velorona-edge/bin/python3', '-Im', 'ensurepip', '--upgrade', '--default-pip']
+
+[exit=1]
+
+$ pip install --no-index --find-links wheels "aei-microwave-link-exposure[edge]==0.3.1"
+/usr/bin/pip:6: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+  from pkg_resources import load_entry_point
+Looking in links: wheels
+Processing ./wheels/aei_microwave_link_exposure-0.3.1-py3-none-any.whl
+ERROR: Package 'aei-microwave-link-exposure' requires a different Python: 3.8.10 not in '>=3.10'
+[exit=1]
+
+$ python -c "import aei_mw_exposure as m; print(m.__version__)"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ImportError: No module named aei_mw_exposure
+[exit=1]
+## Failure point 1 fallback (runbook): run from the unpacked wheel
+
+$ python3 -m zipfile -e wheels/aei_microwave_link_exposure-0.3.1-py3-none-any.whl ~/edge-site
+[exit=0]
+
+$ PYTHONPATH=~/edge-site python3 -m aei_mw_exposure.edge --links examples/edge/links.json examples/edge/telemetry.jsonl
+{"kind":"decision","link_id":"DEMO-L1","severity":"low","exposure_ratio":0.116,"predicted_attenuation_db":3.71,"fade_margin_db":32.0,"rain_rate_mm_h":4.0,"rain_source_site_id":"DEMO-B","observed_at":{"DEMO-A":"2026-11-21T10:00Z","DEMO-B":"2026-11-21T10:00Z"},"flags":[]}
+{"kind":"decision","link_id":"DEMO-L2","severity":"low","exposure_ratio":0.205,"predicted_attenuation_db":5.13,"fade_margin_db":25.0,"rain_rate_mm_h":4.0,"rain_source_site_id":"DEMO-B","observed_at":{"DEMO-B":"2026-11-21T10:00Z","DEMO-C":"2026-11-21T10:00Z"},"flags":[]}
+{"kind":"decision","link_id":"DEMO-L1","severity":"high","exposure_ratio":1.002,"predicted_attenuation_db":32.05,"fade_margin_db":32.0,"rain_rate_mm_h":45.0,"rain_source_site_id":"DEMO-A","observed_at":{"DEMO-A":"2026-11-21T10:05Z","DEMO-B":"2026-11-21T10:00Z"},"flags":["high_exposure","endpoint_timestamps_differ"]}
+{"event":"rejected","line":5,"reason":"invalid_json"}
+{"event":"summary","observations":4,"decisions":3,"rejected":1,"links":2,"links_without_both_readings":0}
+[exit=0]
+
+$ PYTHONPATH=~/edge-site python3 scripts/edge_resource_check.py
+{
+  "load": "synthetic",
+  "library_version": "0.3.1",
+  "python": "3.8.10",
+  "machine": "aarch64",
+  "platform": "Linux-5.10.192-tegra-aarch64-with-glibc2.29",
+  "links": 200,
+  "readings_per_site": 100,
+  "observations": 20100,
+  "decisions": 39800,
+  "rejected": 0,
+  "runtime_s": 7.1,
+  "observations_per_s": 2831,
+  "peak_python_alloc_mib_during_run": 12.15,
+  "peak_rss_mib_process": 33.6,
+  "peak_rss_mib_before_run": 12.2,
+  "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input."
+}
+[exit=0]
+
+$ PYTHONPATH=~/edge-site python3 -m aei_mw_exposure.edge --links examples/edge/links.json --final examples/edge/telemetry.csv
+{"kind":"decision","link_id":"DEMO-L1","severity":"high","exposure_ratio":1.002,"predicted_attenuation_db":32.05,"fade_margin_db":32.0,"rain_rate_mm_h":45.0,"rain_source_site_id":"DEMO-A","observed_at":{"DEMO-A":"2026-11-21T10:05Z","DEMO-B":"2026-11-21T10:00Z"},"flags":["high_exposure","endpoint_timestamps_differ"]}
+{"kind":"decision","link_id":"DEMO-L2","severity":"low","exposure_ratio":0.205,"predicted_attenuation_db":5.13,"fade_margin_db":25.0,"rain_rate_mm_h":4.0,"rain_source_site_id":"DEMO-B","observed_at":{"DEMO-B":"2026-11-21T10:00Z","DEMO-C":"2026-11-21T10:00Z"},"flags":[]}
+{"event":"summary","observations":4,"decisions":2,"rejected":0,"links":2,"links_without_both_readings":0}
+[exit=0]
+## Step 6: smoke test (needs pytest; no venv, so the bundled pytest wheels are unpacked the same way)
+
+$ for w in wheels/pytest-*.whl wheels/pluggy-*.whl wheels/iniconfig-*.whl wheels/packaging-*.whl wheels/exceptiongroup-*.whl wheels/tomli-*.whl wheels/pygments-*.whl; do python3 -m zipfile -e "$w" ~/edge-pytest; done; PYTHONPATH=~/edge-site:~/edge-pytest python3 -m pytest -q -p no:cacheprovider tests/test_edge.py 2>&1 | tail -5
+  File "~/edge-pytest/_pytest/_code/__init__.py", line 5, in <module>
+    from .code import Code
+  File "~/edge-pytest/_pytest/_code/code.py", line 33, in <module>
+    from typing import TypeAlias
+ImportError: cannot import name 'TypeAlias' from 'typing' (/usr/lib/python3.8/typing.py)
+[exit=0]
+## Step 7: resource check (second size)
+
+$ PYTHONPATH=~/edge-site python3 scripts/edge_resource_check.py --links 2000 --readings 500
+{
+  "load": "synthetic",
+  "library_version": "0.3.1",
+  "python": "3.8.10",
+  "machine": "aarch64",
+  "platform": "Linux-5.10.192-tegra-aarch64-with-glibc2.29",
+  "links": 2000,
+  "readings_per_site": 500,
+  "observations": 1000500,
+  "decisions": 1998000,
+  "rejected": 0,
+  "runtime_s": 368.243,
+  "observations_per_s": 2717,
+  "peak_python_alloc_mib_during_run": 513.29,
+  "peak_rss_mib_process": 788.4,
+  "peak_rss_mib_before_run": 12.2,
+  "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input."
+}
+[exit=0]
+## Step 7 again with the fixed resource script (commit f151ad1: decisions discarded, not buffered)
+
+$ PYTHONPATH=~/edge-site python3 scripts/edge_resource_check_f151ad1.py
+{
+  "load": "synthetic",
+  "library_version": "0.3.1",
+  "python": "3.8.10",
+  "machine": "aarch64",
+  "platform": "Linux-5.10.192-tegra-aarch64-with-glibc2.29",
+  "links": 200,
+  "readings_per_site": 100,
+  "observations": 20100,
+  "decisions": 39800,
+  "rejected": 0,
+  "runtime_s": 6.845,
+  "observations_per_s": 2937,
+  "peak_python_alloc_mib_during_run": 0.12,
+  "peak_rss_mib_process": 20.8,
+  "peak_rss_mib_before_run": 12.3,
+  "output": "discarded (not buffered)",
+  "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input."
+}
+[exit=0]
+
+$ PYTHONPATH=~/edge-site python3 scripts/edge_resource_check_f151ad1.py --links 2000 --readings 500
+{
+  "load": "synthetic",
+  "library_version": "0.3.1",
+  "python": "3.8.10",
+  "machine": "aarch64",
+  "platform": "Linux-5.10.192-tegra-aarch64-with-glibc2.29",
+  "links": 2000,
+  "readings_per_site": 500,
+  "observations": 1000500,
+  "decisions": 1998000,
+  "rejected": 0,
+  "runtime_s": 344.994,
+  "observations_per_s": 2900,
+  "peak_python_alloc_mib_during_run": 0.92,
+  "peak_rss_mib_process": 456.0,
+  "peak_rss_mib_before_run": 12.2,
+  "output": "discarded (not buffered)",
+  "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input."
+}
+[exit=0]

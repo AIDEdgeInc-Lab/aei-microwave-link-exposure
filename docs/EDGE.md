@@ -81,10 +81,21 @@ The script uses a synthetic, seeded load and prints runtime, peak Python allocat
 
 ## Measured results
 
-None yet. Fill this table only with output from `scripts/edge_resource_check.py` run on the device. Step-by-step device
-instructions, including where each column comes from: [EDGE_JETSON_RUNBOOK.md](EDGE_JETSON_RUNBOOK.md).
+Only values produced by `scripts/edge_resource_check.py` on the device. Raw output: [edge-runs/jetson-2026-11-22.txt](edge-runs/jetson-2026-11-22.txt).
 
-| Device | JetPack / Python | Links × readings | Runtime (s) | Peak alloc (MiB) | Peak RSS (MiB) | Date |
-|---|---|---|---|---|---|---|
-| Jetson Orin Nano | TODO | 200 × 100 | TODO | TODO | TODO | TODO |
-| Jetson Orin Nano | TODO | 2000 × 500 | TODO | TODO | TODO | TODO |
+**Run of 2026-11-22: the runbook's install step failed on this board.** The board is L4T R35.5 (JetPack 5) with Python 3.8.10.
+`python3 -m venv` fails (no `ensurepip`), and `pip install` refuses the package (`requires a different Python: 3.8.10 not in
+'>=3.10'`). The numbers below come from the runbook's fallback (unpacked wheel on `PYTHONPATH`) on Python 3.8.10, which this
+package does **not** support. They describe this code on this hardware, not a supported installation. The pytest smoke test could
+not run (pytest 9 needs Python 3.10).
+
+| Device | JetPack / Python | Links × readings | Runtime (s) | Peak alloc (MiB) | Peak RSS (MiB) | Date | Script |
+|---|---|---|---|---|---|---|---|
+| Jetson Orin Nano class, 7.4 GiB | L4T R35.5 (JetPack 5) / 3.8.10 (unsupported, fallback) | 200 × 100 | 6.845 | 0.12 | 20.8 | 2026-11-22 | `f151ad1` |
+| Jetson Orin Nano class, 7.4 GiB | L4T R35.5 (JetPack 5) / 3.8.10 (unsupported, fallback) | 2000 × 500 | 344.994 | 0.92 | 456.0 | 2026-11-22 | `f151ad1` |
+
+The same runs with the first version of the script (which kept every decision line in an in-memory buffer, so its peak alloc
+measures that buffer, not the runner): 200 × 100: 7.1 s, 12.15 MiB alloc, 33.6 MiB RSS; 2000 × 500: 368.243 s, 513.29 MiB alloc,
+788.4 MiB RSS. Peak RSS in every row includes the synthetic input, which the script builds in memory before the run.
+
+Still TODO: a run on a supported install (JetPack 6, or any Python 3.10+ on the device).

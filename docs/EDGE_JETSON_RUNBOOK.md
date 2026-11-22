@@ -138,7 +138,9 @@ Commit the two JSON files next to it (e.g. `docs/edge-results/`) so the table ca
 
 ## Most likely failure points
 
-1. **Python older than 3.10.** `pip install` says `requires a different Python: 3.8.x not in '>=3.10'`. JetPack 5 (L4T R35)
+1. **Python older than 3.10.** *Seen on the AID Edge board (2026-11-22): L4T R35.5 / JetPack 5, Python 3.8.10, no `ensurepip`;
+   see `docs/edge-runs/jetson-2026-11-22.txt`. On Python 3.8 the fallback below runs, but 3.8 is unsupported and pytest 9 cannot
+   run there.* `pip install` says `requires a different Python: 3.8.x not in '>=3.10'`. JetPack 5 (L4T R35)
    ships Python 3.8; JetPack 6 (L4T R36) ships 3.10. Fix: use a JetPack 6 image. If `python3 -m venv` fails with "ensurepip is
    not available" (the `python3.10-venv` package is missing and cannot be installed offline), skip the venv and run from the
    unpacked wheel. This needs no pip, since the wheel is a zip of pure Python:
