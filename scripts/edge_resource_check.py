@@ -23,6 +23,16 @@ from aei_mw_exposure import MicrowaveLink, MicrowaveSite, Provenance, __version_
 from aei_mw_exposure.edge import _jsonl_records, run
 
 
+class _Discard:
+    """Output sink that keeps nothing, so the measurement is the runner's memory, not a buffer of its output."""
+
+    def write(self, text: str) -> int:
+        return len(text)
+
+    def flush(self) -> None:
+        pass
+
+
 def _peak_rss_mib() -> float:
     peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     return round(peak / (1024 * 1024 if sys.platform == "darwin" else 1024), 1)  # bytes on macOS, KiB on Linux
@@ -47,7 +57,7 @@ def main() -> int:
     telemetry = io.StringIO("\n".join(lines) + "\n")
     del lines
 
-    out, err = io.StringIO(), io.StringIO()
+    out, err = _Discard(), _Discard()  # decisions and events are counted by run() and discarded here
     tracemalloc.start()
     t0 = time.perf_counter()
     summary = run(links, _jsonl_records(telemetry), out, err)
@@ -71,6 +81,7 @@ def main() -> int:
         "peak_python_alloc_mib_during_run": round(traced_peak / (1024 * 1024), 2),
         "peak_rss_mib_process": _peak_rss_mib(),
         "peak_rss_mib_before_run": rss_before,
+        "output": "discarded (not buffered)",
         "note": "tracemalloc slows the run; runtime_s is an upper bound. RSS includes the interpreter and the synthetic input.",
     }, indent=2))
     return 0
