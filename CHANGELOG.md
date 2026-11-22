@@ -3,7 +3,7 @@
 All notable changes to this project are recorded here. This project is
 published on PyPI: https://pypi.org/project/aei-microwave-link-exposure/.
 
-## [0.3.1] - unreleased (release candidate)
+## [0.3.1] - 2026-11-22
 
 Adds an offline edge runner. The library API and every calculated value are unchanged from 0.3.0.
 
